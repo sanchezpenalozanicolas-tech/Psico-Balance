@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Psico-Balance | Plataforma de Equilibrio Emocional</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Fondo Dinámico Animado -->
+  <div class="animated-bg"></div>
+
+  <!-- PANTALLA DE BIENVENIDA / MINI PRESENTACIÓN ANIMADA -->
+  <div id="intro-splash" class="intro-overlay">
+    <div class="intro-content">
+      <div class="intro-logo">
+        <img src="logo.png" alt="Logo Psico-Balance" class="logo-img-splash">
+      </div>
+      <h1 class="intro-title">Psico-Balance</h1>
+      <p class="intro-slogan">En Psico-Balance acompañamos tu camino hacia la calma, el equilibrio emocional y una mente en armonía</p>
+      <div class="intro-quote-box">
+        <p id="intro-dynamic-quote" class="intro-quote">"Llévala contigo. Recuerda que tu vida importa."</p>
+      </div>
+      <button id="enter-app-btn" class="primary-btn glow-btn" style="margin-top: 25px;">Comenzar experiencia</button>
+    </div>
+  </div>
+
+  <!-- ==================== PANTALLA DE INICIO DE SESIÓN ==================== -->
+  <section id="onboarding-screen" class="screen hidden">
+    <div class="card onboarding-card">
+      <div class="logo-container">
+        <img src="logo.png" alt="Psico-Balance Logo" class="logo-img-card">
+        <h1>Psico-Balance</h1>
+        <p>Espacio interactivo de regulación, desahogo e investigación emocional</p>
+      </div>
+
+      <form id="login-form">
+        <div class="input-group">
+          <label for="user-name">¿Cómo te llamas o cómo quieres que te llamemos?</label>
+          <input type="text" id="user-name" placeholder="Escribe tu nombre o apodo" required>
+        </div>
+
+        <div class="input-group">
+          <label>¿Cuál es tu edad?</label>
+          <div class="age-options">
+            <input type="number" id="user-age" min="5" max="120" placeholder="Ej. 17">
+            <span class="or-text">o selecciona un rango:</span>
+            <select id="user-age-range">
+              <option value="">-- Elige un rango de edad --</option>
+              <option value="Menor de 15">Menor de 15 años</option>
+              <option value="15-18 años">15 a 18 años</option>
+              <option value="19-25 años">19 a 25 años</option>
+              <option value="26-40 años">26 a 40 años</option>
+              <option value="Mayor de 40">Mayor de 40 años</option>
+              <option value="Prefiero no decir">Prefiero no decir</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>¿Cuál es tu estado emocional en este momento?</label>
+          <div class="mood-selector">
+            <button type="button" class="mood-btn" data-mood="Ansiedad" data-color="#6366f1">Ansiedad</button>
+            <button type="button" class="mood-btn" data-mood="Ira" data-color="#ef4444">Ira / Rabia</button>
+            <button type="button" class="mood-btn" data-mood="Tristeza" data-color="#3b82f6">Tristeza</button>
+            <button type="button" class="mood-btn" data-mood="Estres" data-color="#f59e0b">Estrés</button>
+            <button type="button" class="mood-btn" data-mood="Miedo" data-color="#7c3aed">Miedo</button>
+            <button type="button" class="mood-btn" data-mood="Frustracion" data-color="#f97316">Frustración</button>
+            <button type="button" class="mood-btn" data-mood="Alegria" data-color="#10b981">Calma / Alegría</button>
+            <button type="button" class="mood-btn mood-unknown" data-mood="NoSe" data-color="#14b8a6">No sé qué siento</button>
+          </div>
+        </div>
+
+        <button type="submit" class="primary-btn glow-btn">Entrar a mi espacio</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ==================== DASHBOARD PRINCIPAL ==================== -->
+  <section id="dashboard-screen" class="screen hidden">
+    <header class="navbar">
+      <div class="brand-container">
+        <img src="logo.png" alt="Psico-Balance" class="nav-logo-img">
+        <span class="brand">Psico-Balance</span>
+      </div>
+      <nav class="nav-tabs">
+        <button class="tab-btn active" data-tab="tab-home">Mi Espacio</button>
+        <button class="tab-btn" data-tab="tab-symptoms">Diagnóstico Corporal</button>
+        <button class="tab-btn" data-tab="tab-desahogo">Espacio de Desahogo</button>
+        <button class="tab-btn" data-tab="tab-rutas">Rutas de Salud Mental</button>
+        <button class="tab-btn" data-tab="tab-wiki">Investigación Emocional</button>
+        <button class="tab-btn" data-tab="tab-emotions">Guía por Emoción</button>
+      </nav>
+      <div class="user-info">
+        <span id="welcome-text">¡Hola!</span>
+        <button id="change-mood-btn" class="secondary-btn">Cambiar Estado</button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      
+      <!-- PESTAÑA 1: MI ESPACIO -->
+      <div id="tab-home" class="tab-content active">
+        <section id="dynamic-banner" class="banner-card">
+          <h2 id="greeting-heading">Bienvenido/a</h2>
+          <p id="mood-status-text">Estado seleccionado: ...</p>
+          <blockquote id="daily-affirmation" class="quote-box">
+            "Siente la emoción, comprende su mensaje y retoma el equilibrio."
+          </blockquote>
+        </section>
+
+        <!-- WORKSPACE INTERACTIVO DE ACTIVIDADES -->
+        <section class="interactive-workspace card">
+          <h3>Estrategias Rápidas de Regulación Emocional</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+            Haz clic en cualquiera de las 4 actividades laterales para ejecutar su dinámica visual con tiempos reales guiados:
+          </p>
+
+          <div class="workspace-layout">
+            <div id="active-activity-display" class="active-activity-box">
+              <h4 id="active-act-title">1. Respiración 4-7-8 Guiada</h4>
+              <p id="active-act-desc">Sigue la expansión de la figura para desacelerar tu ritmo cardíaco y calmar la mente.</p>
+
+              <div id="activity-steps-box" class="steps-instruction-box">
+                <ol id="active-steps-list">
+                  <li>Inhala por la nariz en 4 segundos sintiendo la expansión de tu diafragma.</li>
+                  <li>Sostén el aire dentro de tus pulmones durante 7 segundos.</li>
+                  <li>Exhala suavemente por la boca en 8 segundos vaciando todo el aire.</li>
+                </ol>
+              </div>
+              
+              <div id="activity-visual-area" class="activity-visual-area">
+                <div id="interactive-shape" class="shape-circle">
+                  <span id="shape-text">Inhala (4s)</span>
+                </div>
+              </div>
+
+              <div class="act-controls">
+                <button id="start-act-btn" class="primary-btn">Iniciar Actividad Guiada</button>
+                <button id="stop-act-btn" class="secondary-btn hidden">Detener</button>
+              </div>
+            </div>
+
+            <div class="activities-sidebar">
+              <div class="side-act-card active" data-act="1">
+                <h5>1. Respiración 4-7-8</h5>
+                <p>Inhala (4s) - Sostén (7s) - Exhala (8s).</p>
+              </div>
+              <div class="side-act-card" data-act="2">
+                <h5>2. Grounding 5-4-3-2-1</h5>
+                <p>Cuadrado rotativo de enfoque visual.</p>
+              </div>
+              <div class="side-act-card" data-act="3">
+                <h5>3. Pausa Corporal</h5>
+                <p>Cápsula de descompresión física.</p>
+              </div>
+              <div class="side-act-card" data-act="4">
+                <h5>4. Reflejo Térmico</h5>
+                <p>Rombo brillante de estímulo sensorial.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Videoteca con Nuevos Enlaces Actualizados -->
+        <section class="videos-section card">
+          <h3>Videoteca de Apoyo Emocional</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Aprende y relájate directamente desde la página:</p>
+          <div class="video-grid" id="main-video-grid"></div>
+        </section>
+      </div>
+
+      <!-- PESTAÑA 2: DIAGNÓSTICO DE SÍNTOMAS -->
+      <div id="tab-symptoms" class="tab-content hidden">
+        <section class="card">
+          <h3>Identificador y Evaluación Somática Avanzada</h3>
+          <p>Puedes seleccionar **uno o varios síntomas al mismo tiempo**. La plataforma calculará la combinación exacta y adaptará el diagnóstico fisiológico:</p>
+          
+          <div class="symptoms-grid">
+            <button class="symptom-btn" data-symptom="nudo">Nudo o presión en la garganta</button>
+            <button class="symptom-btn" data-symptom="pecho">Opresión o pinchazos en el pecho</button>
+            <button class="symptom-btn" data-symptom="taquicardia">Corazón acelerado / Taquicardia</button>
+            <button class="symptom-btn" data-symptom="temblor">Temblor muscular o sudoración fría</button>
+            <button class="symptom-btn" data-symptom="mandibula">Mandíbula apretada / Tensión de cuello</button>
+            <button class="symptom-btn" data-symptom="estomago">Malestar o vacío en el estómago</button>
+            <button class="symptom-btn" data-symptom="hormigueo">Hormigueo en manos o piernas</button>
+            <button class="symptom-btn" data-symptom="pesadez">Agotamiento muscular profundo</button>
+            <button class="symptom-btn" data-symptom="calor">Calor o bochorno en la cara</button>
+          </div>
+
+          <button id="analyze-symptoms-btn" class="primary-btn glow-btn" style="margin-top: 15px;">Analizar Síntomas Seleccionados</button>
+
+          <div id="symptom-result" class="symptom-result-box hidden">
+            <h4>Análisis Fisiológico Somático y Plan de Alivio</h4>
+            
+            <div class="symptom-neuro-info" style="margin-top: 15px; padding: 18px; background: #e0f2fe; border-radius: 12px; border-left: 5px solid #0284c7;">
+              <strong style="color:#0369a1; font-size:1rem;">Diagnóstico Combinado Específico:</strong>
+              <p id="symptom-combo-title" style="font-size:1.05rem; font-weight:700; margin-top:4px; color:#0c4a6e;"></p>
+              <p id="symptom-neuro-text" style="font-size:0.92rem; margin-top:8px; color:#0369a1; line-height:1.6;"></p>
+            </div>
+
+            <div id="symptom-emotions-container" style="margin-top: 18px;">
+              <strong>Estados Emocionales Detección Somática:</strong>
+              <div id="emotion-badges" style="margin-top: 8px;"></div>
+            </div>
+
+            <div class="symptom-action-plan" style="margin-top: 20px; padding: 20px; background: white; border-radius: 12px; border:2px solid #e2e8f0;">
+              <strong>Plan de Alivio Personalizado según tu Selección:</strong>
+              <div id="symptom-custom-plan" style="margin-top:10px; font-size:0.93rem; color:var(--text-main); line-height:1.6;"></div>
+              <hr style="margin:15px 0; border:0; border-top:1px solid #e2e8f0;">
+              <strong>Pautas Específicas por Cada Síntoma:</strong>
+              <ul id="symptom-steps" style="margin-top: 10px; padding-left: 20px;"></ul>
+            </div>
+
+            <div id="symptom-interactive-module" class="symptom-interactive-card" style="margin-top: 20px;">
+              <h5 id="symptom-act-title">Ejercicio de Sincronización Somática (Inhala - Sostén - Exhala)</h5>
+              <p id="symptom-act-desc">Sigue el movimiento del círculo para nivelar el ritmo cardíaco y la presión sanguínea.</p>
+              <div id="symptom-interactive-canvas" class="symptom-canvas">
+                <div id="symptom-target-circle" class="symptom-target-circle">Siente el ritmo</div>
+              </div>
+              <button id="start-symptom-act-btn" class="primary-btn" style="margin-top: 10px;">Iniciar Ejercicio Somático</button>
+            </div>
+
+            <div class="source-citation" style="margin-top:20px;">
+              <strong>Bibliografía y Respaldo Médico Somático:</strong>
+              <a href="https://www.health.harvard.edu/mind-and-mood/the-gut-brain-connection" target="_blank" rel="noopener noreferrer">Harvard Medical School - Gut-Brain Connection & Somatic Stress</a> |
+              <a href="https://www.apa.org/topics/stress/body" target="_blank" rel="noopener noreferrer">American Psychological Association (APA) - Stress Effects on the Body</a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- PESTAÑA 3: ESPACIO DE DESAHOGO EMOCIONAL -->
+      <div id="tab-desahogo" class="tab-content hidden">
+        <section class="card">
+          <h3>Espacio Privado de Desahogo Emocional</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+            Este es un espacio confidencial y seguro. Escribe todo lo que necesites sacar de tu mente sin juicio.
+          </p>
+
+          <div class="desahogo-prompts-box">
+            <button id="get-prompt-btn" class="secondary-btn">Obtener pregunta orientadora de desahogo</button>
+            <p id="prompt-question-text" class="prompt-text hidden">Haz clic en el botón superior para generar una pregunta inspiradora...</p>
+          </div>
+
+          <div class="desahogo-textarea-container" style="margin-top: 20px;">
+            <textarea id="desahogo-text" placeholder="Escribe aquí todo lo que estás sintiendo o guardando por dentro..." rows="10"></textarea>
+          </div>
+
+          <div class="desahogo-actions" style="margin-top: 15px; display: flex; gap: 12px; flex-wrap: wrap;">
+            <button id="save-desahogo-btn" class="primary-btn">Guardar mi nota localmente</button>
+            <button id="clear-desahogo-btn" class="secondary-btn">Borrar escrito para soltar</button>
+          </div>
+          
+          <div id="desahogo-msg" class="desahogo-status-msg hidden"></div>
+
+          <div class="motivational-footer-card" style="margin-top: 25px;">
+            <p class="motivational-title">Reflexión para tu día:</p>
+            <blockquote id="desahogo-dynamic-quote" class="motivational-quote-text">
+              "No tienes que poder con todo."
+            </blockquote>
+          </div>
+        </section>
+      </div>
+
+      <!-- PESTAÑA 4: RUTAS DE ATENCIÓN -->
+      <div id="tab-rutas" class="tab-content hidden">
+        <section class="card">
+          <h3>Rutas de Atención y Orientación en Salud Mental</h3>
+          <p style="color: var(--text-muted); margin-bottom: 20px;">
+            Directorio institucional oficial enfocado en salud mental y atención médica directa para Soacha, Sibaté, Bogotá D.C. y Cundinamarca:
+          </p>
+
+          <div class="rutas-grid">
+            <div class="ruta-card">
+              <h4>1. Ruta de atención: Línea 141 del ICBF</h4>
+              <p>Permite pedir orientación y protección cuando un menor de edad enfrenta situaciones que afectan sus derechos o su bienestar. Atención gratuita, disponible las 24 horas.</p>
+              <ul>
+                <li><strong>¿Cómo utilizarla?</strong></li>
+                <li>1. Identificar la situación que requiere ayuda.</li>
+                <li>2. Llamar al 141 y explicar lo que está sucediendo.</li>
+                <li>3. Recibir orientación sobre las medidas de protección correspondientes.</li>
+                <li>4. Seguir las indicaciones del profesional.</li>
+                <li><strong>Fuente oficial:</strong> Instituto Colombiano de Bienestar Familiar ICBF</li>
+              </ul>
+              <div class="ruta-actions">
+                <a href="tel:141" class="ruta-btn whatsapp-btn">Llamar al 141</a>
+                <a href="https://www.icbf.gov.co" target="_blank" class="ruta-btn web-btn">ICBF – Líneas de atención</a>
+              </div>
+            </div>
+
+            <div class="ruta-card">
+              <h4>2. Ruta Distrital de Salud Mental (Bogotá D.C.)</h4>
+              <p><strong>Lugar de cobertura:</strong> Bogotá D.C. y área metropolitana.</p>
+              <ul>
+                <li><strong>Línea 106:</strong> "El poder de ser escuchado" (Secretaría Distrital de Salud de Bogotá).</li>
+                <li><strong>Línea Calma:</strong> Atención gratuita para la contención emocional de hombres (018000 423614).</li>
+                <li><strong>Línea Púrpura:</strong> Orientación y protección integral a mujeres (018000 112137).</li>
+              </ul>
+              <div class="ruta-actions">
+                <a href="https://api.whatsapp.com/send?phone=573007548933&text=Hola,%20requiero%20apoyo%20de%20la%20Linea%20106" target="_blank" class="ruta-btn whatsapp-btn">Enviar WhatsApp</a>
+                <a href="https://www.saludcapital.gov.co" target="_blank" class="ruta-btn web-btn">Secretaría Distrital de Salud</a>
+              </div>
+            </div>
+
+            <div class="ruta-card">
+              <h4>3. Ruta Nacional del Sistema de Salud (Minsalud / EPS)</h4>
+              <p><strong>Lugar de cobertura:</strong> Todo el territorio nacional (Sibaté, Soacha, Bogotá y Colombia).</p>
+              <ul>
+                <li><strong>Línea 192 (Opción 4):</strong> Orientación e información en Salud Mental del Ministerio de Salud.</li>
+                <li><strong>Acceso por EPS:</strong> Cita prioritaria de Medicina General con orden directa a consulta externa de Psicología o Psiquiatría.</li>
+              </ul>
+              <div class="ruta-actions">
+                <a href="https://www.minsalud.gov.co" target="_blank" class="ruta-btn web-btn">Portal Oficial Minsalud</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- PESTAÑA 5: INVESTIGACIÓN EMOCIONAL -->
+      <div id="tab-wiki" class="tab-content hidden">
+        <section class="card">
+          <h3>Módulo Ampliado de Investigación Psicológica</h3>
+          <p>Explora términos técnicos, guías científicas con fuentes bibliográficas y métodos para identificar lo que sientes:</p>
+          
+          <div class="search-box">
+            <input type="text" id="wiki-search-input" placeholder="Escribe un tema (Ej. Estrés, Ansiedad, No sé qué siento, Ira)...">
+            <button id="wiki-search-btn" class="primary-btn">Buscar</button>
+          </div>
+
+          <div class="subtopics-container">
+            <div class="subtopic-line">
+              <span class="line-label">1. Alerta y Estrés:</span>
+              <button class="subtopic-btn" data-query="Ansiedad">Ansiedad</button>
+              <button class="subtopic-btn" data-query="Miedo y Fobias">Miedo y Fobias</button>
+              <button class="subtopic-btn" data-query="Estrés Crónico">Estrés Crónico</button>
+            </div>
+            <div class="subtopic-line">
+              <span class="line-label">2. Reacción y Frustración:</span>
+              <button class="subtopic-btn" data-query="Ira / Rabia">Ira / Rabia</button>
+              <button class="subtopic-btn" data-query="Frustración">Frustración</button>
+            </div>
+            <div class="subtopic-line">
+              <span class="line-label">3. Autoexploración:</span>
+              <button class="subtopic-btn" data-query="Tristeza y Duelo">Tristeza y Duelo</button>
+              <button class="subtopic-btn" data-query="¿Cómo identificar lo que sientes?">¿Cómo identificar lo que sientes?</button>
+            </div>
+          </div>
+
+          <div id="wiki-result" class="wiki-info-box" style="margin-top: 20px;">
+            <h4>Selecciona un subtema arriba o realiza una búsqueda para desplegar la investigación profunda.</h4>
+          </div>
+        </section>
+      </div>
+
+      <!-- PESTAÑA 6: COMPENDIO CLÍNICO DE EMOCIONES -->
+      <div id="tab-emotions" class="tab-content hidden">
+        <section class="card">
+          <h3>Compendio Clínico de Emociones y Guía de Afrontamiento</h3>
+          
+          <div class="emotion-tabs-selector">
+            <button class="emo-select-btn active" data-emo="ansiedad">Ansiedad</button>
+            <button class="emo-select-btn" data-emo="ira">Ira / Rabia</button>
+            <button class="emo-select-btn" data-emo="tristeza">Tristeza y Duelo</button>
+            <button class="emo-select-btn" data-emo="estres">Estrés Crónico</button>
+            <button class="emo-select-btn" data-emo="frustracion">Frustración</button>
+            <button class="emo-select-btn" data-emo="miedo">Miedo y Fobias</button>
+          </div>
+
+          <div id="emotion-detail-container" class="emotion-detail-box"></div>
+        </section>
+      </div>
+
+    </main>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
